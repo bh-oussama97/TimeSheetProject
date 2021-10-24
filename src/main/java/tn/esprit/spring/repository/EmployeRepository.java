@@ -15,8 +15,7 @@ import tn.esprit.spring.entities.Entreprise;
 
 public interface EmployeRepository extends CrudRepository<Employe, Integer>  {
 	
-//	@Query("select e from Employe e where e.prenom = :#{#req.prenom} or e.nom = :#{#req.nom} or e.email = :#{#req.prenom} ")
-//	Optional<Employe> findQuestionDetails(@Param("req") Employe req);
+
 	
 	
 	@Query("" +
