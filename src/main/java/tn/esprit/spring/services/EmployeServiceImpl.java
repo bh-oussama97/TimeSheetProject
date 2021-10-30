@@ -42,7 +42,7 @@ public class EmployeServiceImpl implements IEmployeService {
 		employeRepository.save(employe);
 
 	}
-
+	
 	@Transactional	
 	public void affecterEmployeADepartement(int employeId, int depId) {
 		Departement depManagedEntity = deptRepoistory.findById(depId).get();
