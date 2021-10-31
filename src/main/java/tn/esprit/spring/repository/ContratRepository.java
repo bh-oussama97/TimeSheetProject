@@ -21,4 +21,7 @@ public interface ContratRepository extends CrudRepository<Contrat, Integer>{
 	  @Query("select c.salaire from Contrat c join c.employe e where e.id=:employeId")
 	    public float getSalaireByEmployeIdJPQL(@Param("employeId")int employeId);
 	  
+	  
+
+	  
 } 

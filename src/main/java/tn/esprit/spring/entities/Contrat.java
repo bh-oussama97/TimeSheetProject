@@ -41,6 +41,10 @@ public class Contrat implements Serializable {
 	}
 
 
+	
+
+	
+
 	public Date getDateDebut() {
 		return dateDebut;
 	}

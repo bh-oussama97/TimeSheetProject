@@ -43,6 +43,14 @@ public class ContratServiceImpl implements IContratService {
 		
 	}
 	
+	public Contrat modifierContrat(Contrat e)
+	{
+		
+		contratRepoistory.save(e);
+		
+		return e;
+	}
+	
 
 	@Override
 	public void deleteContrat(int contratId) {
