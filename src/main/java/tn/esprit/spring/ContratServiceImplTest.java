@@ -5,8 +5,6 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
-import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,6 +46,7 @@ public class ContratServiceImplTest {
 	EmployeServiceImpl es;
 	
 	 Date aujourdhui = new Date();
+	 String typeContrat= "Mensuel";
 	
 	@Before
 	public void init() {
@@ -59,7 +58,7 @@ public class ContratServiceImplTest {
 	@Test
 	public void createContratTest() {
 		 
-		Contrat contrat = new Contrat(aujourdhui,"mensuel", 2.f);
+		Contrat contrat = new Contrat(aujourdhui,typeContrat, 2.f);
 
 		contratService.ajouterContrat(contrat);
 
@@ -86,24 +85,24 @@ public class ContratServiceImplTest {
 	
 	@Test
 	public void testDeleteContratById() {
-
+		 Date tt = new Date();
 		try {
 			
 			int id = contratService.ajouterContrat(
-					new Contrat(aujourdhui,"mensuel", 2.f));
+					new Contrat(tt,"contrat de travail", 2.f));
 
 			contratService.deleteContrat(id);
 			l.info("Contrat deleted successfully!");
 		} catch (Exception e) {
 		
-			l.error(String.format("Error : %s", e.getMessage()));
+			l.error(String.format("sssss : %s", e.getMessage()));
 		}
 	}
 	
 	
 	@Test
 	public void testUpdateContrat() {
-		Contrat contrat = new Contrat(aujourdhui,"mensuel", 2.f);
+		Contrat contrat = new Contrat(aujourdhui,typeContrat, 2.f);
 		when(dao.save(contrat)).thenReturn(contrat);
 
 		Contrat contratModif = contratService.modifierContrat(contrat);
@@ -122,7 +121,7 @@ public class ContratServiceImplTest {
 		try {
 			int idE = es.ajouterEmploye(
 					new Employe("zied", "test", "zied.saidi@ssiiconsulting.tn", true, Role.ADMINISTRATEUR));
-			int idC = contratService.ajouterContrat(new Contrat(aujourdhui,"mensuel", 2.f));
+			int idC = contratService.ajouterContrat(new Contrat(aujourdhui,typeContrat, 2.f));
 
 			contratService.affecterContratAEmploye(idC, idE);
 

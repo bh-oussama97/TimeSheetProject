@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.entities.Contrat;
-import tn.esprit.spring.entities.Employe;
 import tn.esprit.spring.services.IContratService;
-import tn.esprit.spring.services.IEmployeService;
 
 @RestController
 public class RestControlContrat {
@@ -23,8 +21,6 @@ public class RestControlContrat {
 	IContratService contratService;
 
 	
-	// http://localhost:8081/SpringMVC/servlet/ajouterContrat
-	//{"reference":6,"dateDebut":"2020-03-01","salaire":2000,"typeContrat":"CDD"}
 	@PostMapping("/ajouterContrat")
 	@ResponseBody
 	public int addContrat(@RequestBody Contrat contrat,@PathVariable("idEmploye") int idEmploye) {
@@ -46,14 +42,13 @@ public class RestControlContrat {
 	
 
 	
-	// URL : http://localhost:8081/SpringMVC/servlet/deleteContratById/2
+
     @DeleteMapping("/deleteContrat/{idcontrat}") 
 	@ResponseBody
 	public void deleteContrat(@PathVariable("idcontrat")int contratId) {
     	contratService.deleteContrat(contratId);
 	}
 
-    // URL : http://localhost:8081/SpringMVC/servlet/getAllContrats
    	@GetMapping(value = "/getAllContrats")
        @ResponseBody
    	public List<Contrat> getAllContarts() {
@@ -62,7 +57,7 @@ public class RestControlContrat {
    	}
    	
    	
-	// http://localhost:8081/SpringMVC/servlet/affecterContratAEmploye/6/1
+	
 	   @PutMapping(value = "/affecterContratAEmploye/{idcontrat}/{idemp}") 
 		public void affectContratAEmploye(@PathVariable("idcontrat")int contratId, @PathVariable("idemp")int employeId)
 		{
@@ -71,8 +66,7 @@ public class RestControlContrat {
 	   
 	
 	    
-	    
-	 // URL : http://localhost:8081/SpringMVC/servlet/getNombreContratJPQL
+	   
 	    @GetMapping(value = "getNombreContratJPQL")
 	    @ResponseBody
 		public int getNombreContratJPQL() {
