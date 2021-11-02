@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.Optional;
 import tn.esprit.spring.entities.Contrat;
 import tn.esprit.spring.entities.Employe;
 import tn.esprit.spring.repository.ContratRepository;
@@ -27,10 +27,9 @@ public class ContratServiceImpl implements IContratService {
 		contratRepoistory.save(contrat);
 		return contrat.getReference();
 		}
-	
-	@Override
+
 	public Contrat updateContrat(Contrat c, int contratId) {
-		Contrat contrat = contratRepoistory.findById(contratId).get();
+		Contrat contrat = contratRepoistory.findById(contratId).orElse(null);
 		
 		 if ( contrat != null) {
 				
@@ -55,19 +54,25 @@ public class ContratServiceImpl implements IContratService {
 
 	@Override
 	public void deleteContrat(int contratId) {
-		Contrat contratManagedEntity = contratRepoistory.findById(contratId).get();
+		Contrat contratManagedEntity = contratRepoistory.findById(contratId).orElse(null);
 		contratRepoistory.delete(contratManagedEntity);
 	}
 
 	
 	@Override
 	public void affecterContratAEmploye(int contratId, int employeId) {
-		Contrat contratManagedEntity = contratRepoistory.findById(contratId).get();
-		Employe employeManagedEntity = employeRepository.findById(employeId).get();
-
-		contratManagedEntity.setEmploye(employeManagedEntity);
-		contratRepoistory.save(contratManagedEntity);
 		
+		Optional<Contrat> optionalcontrat = contratRepoistory.findById(contratId);
+		
+		Optional<Employe> optionalemploye = employeRepository.findById(employeId);
+		
+		if (optionalcontrat.isPresent() && optionalemploye.isPresent())
+		{
+			Contrat contratManagedEntity = optionalcontrat.get();
+			Employe employeManagedEntity = optionalemploye.get();
+			contratManagedEntity.setEmploye(employeManagedEntity);
+			contratRepoistory.save(contratManagedEntity);
+		}
 	}
 	
 	

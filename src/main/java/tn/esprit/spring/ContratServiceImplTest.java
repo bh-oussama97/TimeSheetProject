@@ -30,11 +30,9 @@ import tn.esprit.spring.repository.ContratRepository;
 import tn.esprit.spring.services.ContratServiceImpl;
 import tn.esprit.spring.services.EmployeServiceImpl;
 
-
-
-
 @RunWith(MockitoJUnitRunner.class)
 public class ContratServiceImplTest {
+
 	@InjectMocks
 	ContratServiceImpl contratService;
 
@@ -48,7 +46,7 @@ public class ContratServiceImplTest {
 	 Date aujourdhui = new Date();
 	 String typeContrat= "Mensuel";
 	
-	@Before
+		@Before
 	public void init() {
 		MockitoAnnotations.initMocks(this);
 	}
@@ -119,10 +117,8 @@ public class ContratServiceImplTest {
 	@Test
 	public void affecterContratAEmployee() {
 		try {
-			int idE = es.ajouterEmploye(
-					new Employe("zied", "test", "zied.saidi@ssiiconsulting.tn", true, Role.ADMINISTRATEUR));
+			int idE = es.ajouterEmploye(new Employe("zied", "test", "zied.saidi@ssiiconsulting.tn", true, Role.ADMINISTRATEUR));
 			int idC = contratService.ajouterContrat(new Contrat(aujourdhui,typeContrat, 2.f));
-
 			contratService.affecterContratAEmploye(idC, idE);
 
 			l.log(Level.INFO, "contract avec id= {0} added successfully to Employee avec id= {1}", idC,idE);
@@ -134,5 +130,4 @@ public class ContratServiceImplTest {
 		}
 
 	}
-	
 }
