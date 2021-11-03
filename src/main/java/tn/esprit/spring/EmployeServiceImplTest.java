@@ -2,6 +2,7 @@ package tn.esprit.spring;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -89,9 +90,12 @@ public class EmployeServiceImplTest {
 		employes.add(deuxiemeemploye);
 
 		when(dao.findAll()).thenReturn(employes);
-
 		
+		List<Employe> empList =  empservice.getAllEmployes();
 
+	     
+		assertThat(empList.size()).isEqualTo(2);
+			
 		verify(dao, times(1)).findAll();
 
 	}
