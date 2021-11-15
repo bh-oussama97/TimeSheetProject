@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>tn.esprit.spring</groupId>
-	<artifactId>Timesheet-spring-boot-core-data-jpa-mvc-REST</artifactId>
+	<artifactId>timesheet_devops</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
-	<name>Timesheet-spring-boot-core-data-jpa-mvc-REST</name>
+	<name>timesheet_devops</name>
 	<description>Timesheet-spring-boot-core-data-jpa-mvc-REST-1</description>
 
 	<properties>
@@ -77,6 +77,15 @@
             </configuration>
         </plugin>
     </plugins>
+
 </build>
+
+<distributionManagement>
+    <repository>
+         <id>deploymentRepo</id>	
+         <url>http://localhost:8088/repository/timesheet</url>
+    </repository>
+
+</distributionManagement>
 
 </project>
