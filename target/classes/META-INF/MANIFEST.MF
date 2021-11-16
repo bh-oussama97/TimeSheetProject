@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Built-By: Aymen Bousselmi
 Build-Jdk: 17
 Implementation-Title: Timesheet-spring-boot-core-data-jpa-mvc-REST
-Implementation-Version: 1.0
+Implementation-Version: 1.0-SNAPSHOT
 Implementation-Vendor-Id: tn.esprit.spring
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
  -starter-parent/Timesheet-spring-boot-core-data-jpa-mvc-REST
