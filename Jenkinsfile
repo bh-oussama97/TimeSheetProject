@@ -31,14 +31,19 @@
      stage("mvn package") {
             steps {
                 dir("build"){
-                    bat "mvn package -Dmaven.test.skip Durl=http://localhost:8088/repository/timesheet/"
+                    bat "mvn package -Dmaven.test.skip"
                 }
             }
         }
         stage("Deployment stage") {
             steps {
                 dir('build') {
-                    bat "mvn clean deploy -Durl=http://localhost:8088/repository/timesheet/"
+                    bat "mvn clean deploy:deploy-file -DgroupId=tn.esprit.spring
+                     -DartifactId=Timesheet -Dversion=1.0 -DgeneratePom=true
+              -Dpackaging=war -DrepositoryId=deploymentRepo
+              -Durl=http://localhost:8088/repository/timesheet/
+              -Dfile=target/Timesheet"
+                    
                 }
             }
         }    
