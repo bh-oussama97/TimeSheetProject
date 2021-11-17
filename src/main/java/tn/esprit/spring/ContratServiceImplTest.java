@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -119,8 +121,10 @@ public class ContratServiceImplTest {
 		try {
 			int idE = es.ajouterEmploye(new Employe("zied", "test", "zied.saidi@ssiiconsulting.tn", true, Role.ADMINISTRATEUR));
 			int idC = contratService.ajouterContrat(new Contrat(aujourdhui,typeContrat, 2.f));
-			contratService.affecterContratAEmploye(idC, idE);
-
+	
+		contratService.affecterContratAEmploye(idC, idE);
+		l.log(Level.INFO, "id= {0} employe", idE);
+		l.log(Level.INFO, "id= {0} Contrat", idC);
 			l.log(Level.INFO, "contract avec id= {0} added successfully to Employee avec id= {1}", idC,idE);
 			
 		} catch (Exception e) {
