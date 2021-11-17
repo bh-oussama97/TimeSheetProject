@@ -31,14 +31,14 @@
      stage("mvn package") {
             steps {
                 dir("build"){
-                    bat "mvn package -Dmaven.test.skip"
+                    bat "mvn package -Dmaven.test.skip Durl=http://localhost:8088/repository/timesheet/"
                 }
             }
         }
         stage("Deployment stage") {
             steps {
                 dir('build') {
-                    bat "mvn clean deploy"
+                    bat "mvn clean deploy -Durl=http://localhost:8088/repository/timesheet/"
                 }
             }
         }    
