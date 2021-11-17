@@ -38,7 +38,7 @@
         stage("Deployment stage") {
             steps {
                 dir('build') {
-                    bat "mvn deploy"
+                    bat "mvn clean deploy"
                 }
             }
         }    
