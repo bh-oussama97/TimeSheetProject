@@ -76,16 +76,18 @@
                 <target>1.8</target>
             </configuration>
         </plugin>
-    </plugins>
+    </plugins>	
 
 </build>
 
 <distributionManagement>
+    <snapshotRepository>
+      <id>nexus-snapshots</id>
+      <url>http://localhost:8088/repository/maven-snapshots/</url>
+    </snapshotRepository>
     <repository>
-         <id>deploymentRepo</id>	
-         <url>http://localhost:8088/repository/timesheet</url>
+      <id>nexus-releases</id>
+      <url>http://localhost:8088/repository/maven-releases/</url>
     </repository>
-
-</distributionManagement>
-
+  </distributionManagement>
 </project>
