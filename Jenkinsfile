@@ -16,7 +16,7 @@
          stage('sonar'){
             steps {
                 dir("build"){
-                    bat "mvn sonar:sonar"
+                    bat "mvn clean install sonar:sonar"
                 }
             }
         }
