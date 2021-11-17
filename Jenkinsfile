@@ -9,7 +9,7 @@ pipeline {
         stage('clone git repo'){
             steps {
                 bat "if exist build rmdir /s /q build"
-                bat "git clone https://github.com/ihebrejeb/demo.git ./build"
+                bat "git clone https://github.com/bh-oussama97/TimeSheetProject.git ./build"
             }
         }
        
