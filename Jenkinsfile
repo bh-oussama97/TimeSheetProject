@@ -38,11 +38,7 @@
         stage("Deployment stage") {
             steps {
                 dir('build') {
-                    bat "mvn clean deploy:deploy-file -DgroupId=tn.esprit.spring
-                     -DartifactId=Timesheet -Dversion=1.0 -DgeneratePom=true
-              -Dpackaging=jar -DrepositoryId=deploymentRepo
-              -Durl=http://localhost:8088/repository/timesheet/
-              -Dfile=target/Timesheet-spring-boot-core-data-jpa-mvc-REST-1.0.jar"
+                    bat "mvn deploy"
                     
                 }
             }

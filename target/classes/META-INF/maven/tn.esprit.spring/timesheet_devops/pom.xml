@@ -87,8 +87,8 @@
       <url>http://localhost:8088/repository/maven-snapshots/</url>
     </snapshotRepository>
     <repository>
-      <id>nexus-releases</id>
-      <url>http://localhost:8088/repository/maven-releases/</url>
+      <id>deploymentRepo</id>
+      <url>http://localhost:8088/repository/timesheet/</url>
     </repository>
   </distributionManagement>
 </project>
