@@ -40,7 +40,6 @@ public class Employe implements Serializable {
 	private String email;
 
 	
-
 	private boolean actif;
 	
 	@Enumerated(EnumType.STRING)
