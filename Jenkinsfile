@@ -35,7 +35,14 @@
                 }
             }
         }
-          
+        stage("Deployment stage") {
+            steps {
+                dir('build') {
+                    bat "mvn clean deploy"
+                    
+                }
+            }
+        }    
          
         stage('Building docker image') {
           steps{
@@ -52,14 +59,7 @@
                 }
             }    
         }
-        stage("Deployment stage") {
-            steps {
-                dir('build') {
-                    bat "mvn clean deploy"
-                    
-                }
-            }
-        }    
+          
        
     }
 }
