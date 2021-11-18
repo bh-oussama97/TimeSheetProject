@@ -2,7 +2,7 @@ pipeline {
     environment
 {
 registry = "saharesprit1/timesheet"
-registryCredential= 'dockerHub'
+registryCredential= 'saharesprit1'
 dockerImage = ''
 }
     agent any
