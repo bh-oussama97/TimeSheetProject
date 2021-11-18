@@ -29,8 +29,8 @@ services:
 
     #service 3: definition of your spring-boot app 
     timesheet_devops:                        #it is just a name, which will be used only in this file.
-      image: timesheet-devops               #name of the image after dockerfile executes
-      container_name: timesheet-devops-app #name of the container created from docker image
+      image: timesheet_devops.jar               #name of the image after dockerfile executes
+      container_name: timesheet_devops.jar #name of the container created from docker image
       build: .
       ports:
         - "8084:8081"                       #docker containter port with your os port
@@ -39,6 +39,6 @@ services:
       depends_on:                           #define dependencies of this app
         - db                                #dependency name (which is defined with this name 'db' in this file earlier)
       environment:
-        SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/timeSheetDevOps?createDatabaseIfNotExist=true
+        SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3308/timeSheetDevOps?createDatabaseIfNotExist=true
         SPRING_DATASOURCE_USERNAME: root
         SPRING_DATASOURCE_PASSWORD: root
