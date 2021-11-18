@@ -1,4 +1,10 @@
- pipeline {
+pipeline {
+    environment
+{
+registry = "saharesprit1/timesheet"
+registryCredential= 'dockerHub'
+dockerImage = ''
+}
     agent any
     tools {
         maven "Maven"
@@ -44,22 +50,34 @@
             }
         }    
          
-        stage('Building docker image') {
-          steps{
-                dir("build") {
-                    bat "docker build -f Dockerfile -t app.jar ."
+        stage('Building our image') { 
+            steps { 
+                script { 
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER" 
                 }
-            }    
+            } 
         }
-            
-        stage('Run docker image') {
-            steps{
-                dir("build") {
-                    bat "docker run -d -p 8088:8088 app.jar"
-                }
-            }    
+        stage('Deploy our image') { 
+            steps { 
+                script { 
+                    docker.withRegistry( '', registryCredential ) { 
+                        dockerImage.push() 
+                    }
+                } 
+            }
+        } 
+        stage('Cleaning up') { 
+            steps { 
+               bat "docker rmi $registry:$BUILD_NUMBER"
+            }
+        } 
+        
         }
-          
-       
-    }
-}
+        post {
+            success {
+                emailext body: 'build success' ,subject:'Jenkins' , to : 'sahar.gharbi@esprit.tn'
+            }
+            failure {
+                emailext body: 'build failure' ,subject:'Jenkins' , to : 'sahar.gharbi@esprit.tn'
+            }
+        }
