@@ -1,42 +1,28 @@
-version: '3.3'
-
+version: "3"
 services:
-    #service 1: definition of mysql database
-    db:
-      image: mysql:5.7
-      container_name: mysql-db  
-      environment:
-        - MYSQL_ROOT_PASSWORD=root
-
-      ports:
-        - "3309:3309"
-
-    #service 2: definition of phpMyAdmin
-    phpmyadmin:
-      image: phpmyadmin/phpmyadmin:latest
-      container_name: my-php-myadmin
-      ports:
-        - "8082:8082"
-   
-      
-      depends_on:
-        - db
-      environment:
-        SPRING_DATASOURCE_USERNAME: root
-        SPRING_DATASOURCE_PASSWORD: root
-          
-   
-    timesheet_devops.jar:                       #it is just a name, which will be used only in this file.
-      image: timesheet_devops.jar              #name of the image after dockerfile executes
-      container_name: timesheet_devops.jar  #name of the container created from docker image
-      build: .                         
-      ports:
-        - "8084:8081"                       #docker containter port with your os port
-    
-        
-      depends_on:                           #define dependencies of this app
-        - db                                #dependency name (which is defined with this name 'db' in this file earlier)
-      environment:
-        SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3308/timesheetdevops?createDatabaseIfNotExist=true
-        SPRING_DATASOURCE_USERNAME: root
-        SPRING_DATASOURCE_PASSWORD: root
+  
+  mysql:
+    container_name: mysql
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=timesheet-spring
+      - MYSQL_PASSWORD=root
+    ports:
+      - 3309:3309
+  
+  Timesheet:
+    container_name: timesheet_devops
+    ports:
+      - 8082:8082
+    environment:
+     - SPRING_DATASOURCE_URL=jdbc:mysql://mysql/timeSheetDevOps?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
+     - SPRING_DATASOURCE_USERNAME=root
+     - DATABASE_USER=root
+     - SPRING_DATASOURCE_PASSWORD=root
+     - DATABASE_NAME=timeSheetDevOps
+     - DATABASE_PORT=3306
+    hostname: timesheet_devops
+    image: "ouss97/timesheetrepo"
+    depends_on:
+      - mysql
