@@ -63,24 +63,12 @@ public class TMission {
 	
 	}
 
-	@Test
-	public void verifNameMission() {
-		  Mission mission = es.ajouterMission(new Mission("mission1","description1"));
 	
-		
-		missionRepository.delete(mission);
-
-	}
 	
 
 	
 	
-	@Test
-	public void verifTaille() {
-		List<Mission> missions = es.getAllMission();
-		assertTrue(missions.size() == 0);
-	}
-	
+
 
 	
 	@Test
